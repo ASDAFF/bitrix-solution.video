@@ -63,35 +63,50 @@ $arParams["PATH"] = $this->GetPath().'/';
 //Поля формы
 $arResult['FILTERS'] = Array(
     Array(
-        "TITLE" => "Количество видеокамер, шт",
+        "TITLE" => GetMessage("COUNT_CAMERA"),
         "TYPE" => "list",
-        "VALUE"=>Array(4,8,16),
+        "VALUE" => Array(4,8),
         "NAME" => "count_camera",
         "DEFAULT" => "0"
     ),
     Array(
-        "TITLE" => "Кабель радиочастотный комбинированный, м",
+        "TITLE" => GetMessage("LENGHT_CABEL"),
         "TYPE" => "integer",
         "NAME" => "lenght_cabel",
         "DEFAULT" => "0"
     ),
     Array(
-        "TITLE" => "Провод ПВС, м",
-        "TYPE" => "integer",
-        "NAME" => "lenght_pvs",
+        "TITLE" => GetMessage("DAYS_RECORD"),
+        "TYPE" => "list",
+        "VALUE" => Array(7,14,28),
+        "NAME" => "days_record",
+        "DEFAULT" => "0"
+    ),
+    Array(
+        "TITLE" => GetMessage("MOBILE_DEV"),
+        "TYPE" => "list",
+        "VALUE"=>Array(GetMessage("LIST_YES"),GetMessage("LIST_NO")),
+        "NAME" => "mobile_dev",
+        "DEFAULT" => "0"
+    ),
+    Array(
+        "TITLE" => GetMessage("UNINTERRUPTED"),
+        "TYPE" => "list",
+        "VALUE"=>Array(GetMessage("LIST_YES"),GetMessage("LIST_NO")),
+        "NAME" => "uninterrupted",
         "DEFAULT" => "0"
     ),
 );
 if(isset($arParams['CABELBOX'])&&$arParams['CABELBOX']!=''){
 	$arResult['FILTERS'][]=Array(
-        "TITLE" => "Кабель-канал, м",
+        "TITLE" => GetMessage("LENGHT_CABELCANAL"),
         "TYPE" => "integer",
         "NAME" => "lenght_cabelCanal",
         "DEFAULT" => "0"
     );
 }if(isset($arParams['TOUBE'])&&$arParams['TOUBE']!=''){
 	$arResult['FILTERS'][]=Array(
-        "TITLE" => "Труба гофрированная, м",
+        "TITLE" => GetMessage("LENGHT_GOFRA"),
         "TYPE" => "integer",
         "NAME" => "lenght_gofra",
         "DEFAULT" => "0"

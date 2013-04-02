@@ -17,14 +17,16 @@ createForm($arResult['FILTERS']);
             var request={
             	filters: {
                 	count_camera: $('#count_camera').val(),
-                	lenght_cabel: $('#lenght_cabel').val(),
+                    lenght_cabel: $('#lenght_cabel').val(),
+                    days_record: $('#days_record').val(),
+                    mobile_dev: ($('#mobile_dev').val()==GetMessage("LIST_YES")) ? true : false,
+                    uninterrupted: ($('#uninterrupted').val()==GetMessage("LIST_YES")) ? true : false,
 <?if(isset($arParams['CABELBOX'])&&$arParams['CABELBOX']!=''):?>
                 	lenght_cabelCanal: $('#lenght_cabelCanal').val(),
 <?endif;?>
 <?if(isset($arParams['TOUBE'])&&$arParams['TOUBE']!=''):?>
                 	lenght_gofra: $('#lenght_gofra').val(),
 <?endif;?>
-                	lenght_pvs: $('#lenght_pvs').val(),
                 },
                 count: {<?=$arResult['POST_COUNT']?>},
                 items: {<?=$arResult['POST_DATE']?>},

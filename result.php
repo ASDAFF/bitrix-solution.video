@@ -28,39 +28,41 @@ class solutionVideo extends solutionCalculate{
                     }
                 break;
                 case "VIDEREG4": 
-                	if($arFilters["count_camera"]==4){
-                		$result[]=Array(
-                			"ID"=>$item,
-                			"COUNT"=>1
-                		);
-                	}
+                    if($arFilters["count_camera"]==4&&!$arFilters["mobile_dev"]){
+                        $result[]=Array(
+                            "ID"=>$item,
+                            "COUNT"=>1
+                        );
+                    }
                 break;
                 case "VIDEREG8": 
-                	if($arFilters["count_camera"]==8){
-                		$result[]=Array(
-                			"ID"=>$item,
-                			"COUNT"=>1
-                		);
-                	}
+                    if($arFilters["count_camera"]==8&&!$arFilters["mobile_dev"]){
+                        $result[]=Array(
+                            "ID"=>$item,
+                            "COUNT"=>1
+                        );
+                    }
                 break;
-                case "VIDEREG16": 
-                	if($arFilters["count_camera"]==16){
-                		$result[]=Array(
-                			"ID"=>$item,
-                			"COUNT"=>1
-                		);
-                	}
+                case "VIDEREG4_MOBILE": 
+                    if($arFilters["count_camera"]==4&&$arFilters["mobile_dev"]){
+                        $result[]=Array(
+                            "ID"=>$item,
+                            "COUNT"=>1
+                        );
+                    }
+                break;
+                case "VIDEREG8_MOBILE": 
+                    if($arFilters["count_camera"]==8&&$arFilters["mobile_dev"]){
+                        $result[]=Array(
+                            "ID"=>$item,
+                            "COUNT"=>1
+                        );
+                    }
                 break;
                 case "CABEL": 
                 		$result[]=Array(
                 			"ID"=>$item,
                 			"COUNT"=>$arFilters['lenght_cabel']
-                		);
-                break;
-                case "CABELPOWER": 
-                		$result[]=Array(
-                			"ID"=>$item,
-                			"COUNT"=>$arFilters['lenght_pvs']
                 		);
                 break;
                 case "TOUBE": 
@@ -79,16 +81,8 @@ class solutionVideo extends solutionCalculate{
                 		);
                 	}
                 break;
-                case "BOX": 
-                	if(isset($item)&&$item!=''){
-                		$result[]=Array(
-                			"ID"=>$item,
-                			"COUNT"=>$arFilters['count_camera']
-                		);
-                	}
-                break;
                 case "REZERV": 
-                	if(isset($item)&&$item!=''){
+                	if(isset($item)&&$item!=''&&$arFilters['uninterrupted']){
                 		$result[]=Array(
                 			"ID"=>$item,
                 			"COUNT"=>$arParams['COUNT_REZERV']
