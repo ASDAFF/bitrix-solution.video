@@ -1,3 +1,4 @@
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?
 createForm($arResult['FILTERS']);
 ?>
@@ -12,15 +13,22 @@ createForm($arResult['FILTERS']);
 <script>
     $(document).ready(function(){
         
-        //$("form").submit(function () { 
         $('#resbutt').click(function (){
+            // Поддержка передачи изображения на мобильные устройства
+          	if($('#mobile_dev').val()=="<?=GetMessage("LIST_YES")?>"){
+            	  var mobile = true;
+          	}else var mobile = false;
+          	// Поддержка бесперебойного питания
+          	if($('#uninterrupted').val()=="<?=GetMessage("LIST_YES")?>"){
+                  var uninterrupted = true;
+          	}else var uninterrupted = false;
             var request={
             	filters: {
                 	count_camera: $('#count_camera').val(),
                     lenght_cabel: $('#lenght_cabel').val(),
                     days_record: $('#days_record').val(),
-                    mobile_dev: ($('#mobile_dev').val()==GetMessage("LIST_YES")) ? true : false,
-                    uninterrupted: ($('#uninterrupted').val()==GetMessage("LIST_YES")) ? true : false,
+                    mobile_dev: mobile,
+                    uninterrupted: uninterrupted,
 <?if(isset($arParams['CABELBOX'])&&$arParams['CABELBOX']!=''):?>
                 	lenght_cabelCanal: $('#lenght_cabelCanal').val(),
 <?endif;?>

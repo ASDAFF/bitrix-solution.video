@@ -3,7 +3,7 @@
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
     function createForm($arFilters, $method="GET", $action=""){
         echo "<div style='display:block;'><div class='solutionlogo'></div>";//<img src='/bitrix/components/mycomponent/solutions.video/templates/.default/images/video.jpg' style='float:left' />";
-        echo "<form action='".$action."' method='".$method."' name='fmcalc' style='margin-left:350px'>";
+        echo "<form action='".$action."' method='".$method."' name='fmcalc' style='margin-left:250px'>";
         echo "<table style='margin: 30px 10px 10px 10px; '>";
         foreach($arFilters as $element){
             echo "<tr><td style='padding-top:20px; padding-right:10px; text-align:right; color:#666;'>".$element["TITLE"]."</td><td>";
@@ -70,12 +70,6 @@ $arResult['FILTERS'] = Array(
         "DEFAULT" => "0"
     ),
     Array(
-        "TITLE" => GetMessage("LENGHT_CABEL"),
-        "TYPE" => "integer",
-        "NAME" => "lenght_cabel",
-        "DEFAULT" => "0"
-    ),
-    Array(
         "TITLE" => GetMessage("DAYS_RECORD"),
         "TYPE" => "list",
         "VALUE" => Array(7,14,28),
@@ -96,6 +90,12 @@ $arResult['FILTERS'] = Array(
         "NAME" => "uninterrupted",
         "DEFAULT" => "0"
     ),
+	Array(
+		"TITLE" => GetMessage("LENGHT_CABEL"),
+		"TYPE" => "integer",
+		"NAME" => "lenght_cabel",
+		"DEFAULT" => "0"
+	)
 );
 if(isset($arParams['CABELBOX'])&&$arParams['CABELBOX']!=''){
 	$arResult['FILTERS'][]=Array(

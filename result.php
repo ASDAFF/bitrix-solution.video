@@ -156,18 +156,18 @@ class solutionVideo extends solutionCalculate{
 
 // Добавляем в корзину
 if($_POST['action']=='addbascet'){
-    echo "<div style='font-size: 14px; font-weight: bold;color: red;width: 100%;margin: 40px 0px 0px 0px;' align='center'>".GetMessage("NOT_ADD_CART")."</div>";
-    solutionVideo::addToBascket($_POST['items']);
+	echo "<div style='font-size: 14px; font-weight: bold;color: red;width: 100%;margin: 40px 0px 0px 0px;' align='center'>Товары добавлены в корзину</div>";
+	solutionVideo::addToBascket($_POST['items']);
 }
 
 //Вывод списка товаров
 if($_POST['action']=='getTable'){
-    $arItems=solutionVideo::getListItems($_POST['filters'],$_POST['items'],$_POST['count']);
-    solutionVideo::getTableItems($arItems);
-    foreach ($arItems as $key => $value) {
-        if($value['COUNT']>0)
-            $arResult['POST_DATE'].=$key.": {ID: '".$value['ID']."', COUNT: '".$value['COUNT']."'},";
-    }
+	$arItems=solutionVideo::getListItems($_POST['filters'],$_POST['items'],$_POST['count']);
+	solutionVideo::getTableItems($arItems);
+	foreach ($arItems as $key => $value) {
+		if($value['COUNT']>0)
+			$arResult['POST_DATE'].=$key.": {ID: '".$value['ID']."', COUNT: '".$value['COUNT']."'},";
+	}
 }
 ?>
 
