@@ -1,10 +1,13 @@
 bitrix-solution.video
 =====================
 
-Готовое решение видео
+<b>Готовое решение видео</b>
 
-Присер подключения компонента:
+Калькулятор для подбора комплекта видеонаблюдения. Для работы необходимы модули sale и catalog.
 
+<b>Пример подключения компонента:</b>
+<code>
+	<pre>
 <?$APPLICATION->IncludeComponent(
 	"mycomponent:solutions.video",
 	".default",
@@ -36,3 +39,5 @@ Array(
 	'ACTIVE_COMPONENT' => 'Y'
 )
 );?> 
+	</pre>
+</code>
