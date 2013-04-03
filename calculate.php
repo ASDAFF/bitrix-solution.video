@@ -1,7 +1,7 @@
 <?
 //require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include.php");
-if(!CModule::IncludeModule("sale")) return "Не найден модуль 'sale'";
-if(!CModule::IncludeModule("catalog")) return "Не найден модуль 'catalog'";
+CModule::IncludeModule("sale");
+CModule::IncludeModule("catalog");
 class solutionCalculate{
     function createForm($arFilters, $method="GET", $action=""){
         echo "<form action='".$action."' method='".$method."' name='fmcalc'>";

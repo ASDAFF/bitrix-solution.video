@@ -3,7 +3,7 @@
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
     function createForm($arFilters, $method="GET", $action=""){
         echo "<div style='display:block;'><div class='solutionlogo'></div>";//<img src='/bitrix/components/mycomponent/solutions.video/templates/.default/images/video.jpg' style='float:left' />";
-        echo "<form action='".$action."' method='".$method."' name='fmcalc' style='margin-left:250px'>";
+        echo "<form action='".$action."' method='".$method."' name='fmcalc' style='margin-left:350px'>";
         echo "<table style='margin: 30px 10px 10px 10px; '>";
         foreach($arFilters as $element){
             echo "<tr><td style='padding-top:20px; padding-right:10px; text-align:right; color:#666;'>".$element["TITLE"]."</td><td>";
@@ -63,50 +63,35 @@ $arParams["PATH"] = $this->GetPath().'/';
 //Поля формы
 $arResult['FILTERS'] = Array(
     Array(
-        "TITLE" => GetMessage("COUNT_CAMERA"),
+        "TITLE" => "Количество видеокамер, шт",
         "TYPE" => "list",
-        "VALUE" => Array(4,8),
+        "VALUE"=>Array(4,8,16),
         "NAME" => "count_camera",
         "DEFAULT" => "0"
     ),
     Array(
-        "TITLE" => GetMessage("DAYS_RECORD"),
-        "TYPE" => "list",
-        "VALUE" => Array(7,14,28),
-        "NAME" => "days_record",
+        "TITLE" => "Кабель радиочастотный комбинированный, м",
+        "TYPE" => "integer",
+        "NAME" => "lenght_cabel",
         "DEFAULT" => "0"
     ),
     Array(
-        "TITLE" => GetMessage("MOBILE_DEV"),
-        "TYPE" => "list",
-        "VALUE"=>Array(GetMessage("LIST_YES"),GetMessage("LIST_NO")),
-        "NAME" => "mobile_dev",
+        "TITLE" => "Провод ПВС, м",
+        "TYPE" => "integer",
+        "NAME" => "lenght_pvs",
         "DEFAULT" => "0"
     ),
-    Array(
-        "TITLE" => GetMessage("UNINTERRUPTED"),
-        "TYPE" => "list",
-        "VALUE"=>Array(GetMessage("LIST_YES"),GetMessage("LIST_NO")),
-        "NAME" => "uninterrupted",
-        "DEFAULT" => "0"
-    ),
-	Array(
-		"TITLE" => GetMessage("LENGHT_CABEL"),
-		"TYPE" => "integer",
-		"NAME" => "lenght_cabel",
-		"DEFAULT" => "0"
-	)
 );
 if(isset($arParams['CABELBOX'])&&$arParams['CABELBOX']!=''){
 	$arResult['FILTERS'][]=Array(
-        "TITLE" => GetMessage("LENGHT_CABELCANAL"),
+        "TITLE" => "Кабель-канал, м",
         "TYPE" => "integer",
         "NAME" => "lenght_cabelCanal",
         "DEFAULT" => "0"
     );
 }if(isset($arParams['TOUBE'])&&$arParams['TOUBE']!=''){
 	$arResult['FILTERS'][]=Array(
-        "TITLE" => GetMessage("LENGHT_GOFRA"),
+        "TITLE" => "Труба гофрированная, м",
         "TYPE" => "integer",
         "NAME" => "lenght_gofra",
         "DEFAULT" => "0"

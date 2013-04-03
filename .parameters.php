@@ -19,13 +19,13 @@ foreach($arUserFields as $FIELD_NAME=>$arUserField)
 $arComponentParameters = array(
 	"GROUPS" => array(
       "VIDEREG" => array(
-         "NAME" => GetMessage("VIDEREG")
+         "NAME" => "Видеорегистраторы"
       ),
       "CAMERA" => array(
-         "NAME" => GetMessage("CAMERA")
+         "NAME" => "Видеокамеры"
       ),
       "OTHER" => array(
-         "NAME" => GetMessage("OTHER")
+         "NAME" => "Остальные комплектующие"
       ),
 	),
 	"PARAMETERS" => array(
@@ -33,102 +33,108 @@ $arComponentParameters = array(
 //Видерегистраторы	
 		"VIDEREG4" => array(
          	"PARENT" => "VIDEREG",
-			"NAME" => GetMessage("VIDEREG4"),
+			"NAME" => "Видерегистратор 4х-канальный",
 			"TYPE" => "STRING"
 		),
 		"VIDEREG8" => array(
          	"PARENT" => "VIDEREG",
-			"NAME" => GetMessage("VIDEREG8"),
-			"TYPE" => "STRING"
-		),	
-		"VIDEREG4_MOBILE" => array(
-         	"PARENT" => "VIDEREG",
-			"NAME" => GetMessage("VIDEREG4_MOBILE"),
+			"NAME" => "Видерегистратор 8х-канальный",
 			"TYPE" => "STRING"
 		),
-		"VIDEREG8_MOBILE" => array(
+		"VIDEREG16" => array(
          	"PARENT" => "VIDEREG",
-			"NAME" => GetMessage("VIDEREG8_MOBILE"),
+			"NAME" => "Видерегистратор 16х-канальный",
 			"TYPE" => "STRING"
 		),
 
 //Видеокамеры
 		"VIDEOCAM" => array(
          	"PARENT" => "CAMERA",
-			"NAME" => GetMessage("VIDEOCAM"),
+			"NAME" => "Видекамера(ы)",
 			"MULTIPLE" => "Y",
 			"ADDITIONAL_VALUES" => "Y",
 			"TYPE" => "STRING"
 		),
 
-//Комбинированый кабель
+//Кабель
 		"CABEL" => array(
          	"PARENT" => "OTHER",
-			"NAME" => GetMessage("CABEL"),
+			"NAME" => "Кабель",
 			"TYPE" => "STRING"
 		),
 
 //Труба-гофрированная
 		"TOUBE" => array(
          	"PARENT" => "OTHER",
-			"NAME" => GetMessage("TOUBE"),
+			"NAME" => "Труба-гофрированная",
+			"TYPE" => "STRING"
+		),
+
+//Силовой кабель
+		"CABELPOWER" => array(
+         	"PARENT" => "OTHER",
+			"NAME" => "Силовой кабель",
 			"TYPE" => "STRING"
 		),
 
 //Кабель-канал
 		"CABELBOX" => array(
          	"PARENT" => "OTHER",
-			"NAME" => GetMessage("CABELBOX"),
+			"NAME" => "Кабель-канал",
 			"TYPE" => "STRING"
 		),
 
-//Блок питания с аккумулятором
-		"REZERV" => array(
+//Коробка монтажная
+		"BOX" => array(
          	"PARENT" => "OTHER",
-			"NAME" => GetMessage("REZERV"),
+			"NAME" => "Коробка монтажная",
 			"TYPE" => "STRING"
 		),
-//Блок питания без аккумулятора
-		"BP" => array(
+
+//Блок резервного питания
+		"REZERV" => array(
          	"PARENT" => "OTHER",
-			"NAME" => GetMessage("BP"),
+			"NAME" => "Блок резервного питания",
 			"TYPE" => "STRING"
 		),
 
 //Разъем BNC
 		"BNC" => array(
          	"PARENT" => "OTHER",
-			"NAME" => GetMessage("BNC"),
+			"NAME" => "Разъем BNC",
 			"TYPE" => "STRING"
 		),
 
 //Разъем питания
 		"JACKP" => array(
          	"PARENT" => "OTHER",
-			"NAME" => GetMessage("JACKP"),
+			"NAME" => "Разъем питания",
+			"TYPE" => "STRING"
+		),
+
+//Монитор
+		"DISPALY" => array(
+         	"PARENT" => "OTHER",
+			"NAME" => "Монитор",
 			"TYPE" => "STRING"
 		),
 
 //Аккумулятор
 		"ALKALINE" => array(
          	"PARENT" => "OTHER",
-			"NAME" => GetMessage("ALKALINE"),
+			"NAME" => "Аккумулятор",
 			"TYPE" => "STRING"
 		),
 //Жесткий диск
-		"HDD_500" => array(
+		"HDD" => array(
          	"PARENT" => "OTHER",
-			"NAME" => GetMessage("HDD_500"),
+			"NAME" => "Жесткий диск",
 			"TYPE" => "STRING"
 		),
-		"HDD_750" => array(
+//Жесткий диск
+		"UPS" => array(
          	"PARENT" => "OTHER",
-			"NAME" => GetMessage("HDD_750"),
-			"TYPE" => "STRING"
-		),
-		"HDD_1T" => array(
-         	"PARENT" => "OTHER",
-			"NAME" => GetMessage("HDD_1T"),
+			"NAME" => "ИБП",
 			"TYPE" => "STRING"
 		),
 
@@ -136,21 +142,35 @@ $arComponentParameters = array(
 //Колличество аккумуляторов
 		"COUNT_ALKALINE" => array(
          	"PARENT" => "BASE",
-			"NAME" => GetMessage("COUNT_ALKALINE"),
+			"NAME" => "Колличество аккумуляторов",
 			"TYPE" => "STRING",
 			"DEFAULT"=>1
 		),
-//Колличество блоков питания
+//Колличество мониторов
+		"COUNT_DISPLAY" => array(
+         	"PARENT" => "BASE",
+			"NAME" => "Колличество мониторов",
+			"TYPE" => "STRING",
+			"DEFAULT"=>1
+		),
+//Колличество блоков резервного питания
 		"COUNT_REZERV" => array(
          	"PARENT" => "BASE",
-			"NAME" => GetMessage("COUNT_REZERV"),
+			"NAME" => "Колличество блоков резервного питания",
 			"TYPE" => "STRING",
 			"DEFAULT"=>1
 		),
 //Колличество жестких дисков
 		"COUNT_HDD" => array(
          	"PARENT" => "BASE",
-			"NAME" => GetMessage("COUNT_HDD"),
+			"NAME" => "Колличество жестких дисков",
+			"TYPE" => "STRING",
+			"DEFAULT"=>1
+		),
+
+		"COUNT_UPS" => array(
+         	"PARENT" => "BASE",
+			"NAME" => "Колличество ИПБ",
 			"TYPE" => "STRING",
 			"DEFAULT"=>1
 		),

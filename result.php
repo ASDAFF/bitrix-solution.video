@@ -28,41 +28,39 @@ class solutionVideo extends solutionCalculate{
                     }
                 break;
                 case "VIDEREG4": 
-                    if($arFilters["count_camera"]==4&&!$arFilters["mobile_dev"]){
-                        $result[]=Array(
-                            "ID"=>$item,
-                            "COUNT"=>1
-                        );
-                    }
+                	if($arFilters["count_camera"]==4){
+                		$result[]=Array(
+                			"ID"=>$item,
+                			"COUNT"=>1
+                		);
+                	}
                 break;
                 case "VIDEREG8": 
-                    if($arFilters["count_camera"]==8&&!$arFilters["mobile_dev"]){
-                        $result[]=Array(
-                            "ID"=>$item,
-                            "COUNT"=>1
-                        );
-                    }
+                	if($arFilters["count_camera"]==8){
+                		$result[]=Array(
+                			"ID"=>$item,
+                			"COUNT"=>1
+                		);
+                	}
                 break;
-                case "VIDEREG4_MOBILE": 
-                    if($arFilters["count_camera"]==4&&$arFilters["mobile_dev"]){
-                        $result[]=Array(
-                            "ID"=>$item,
-                            "COUNT"=>1
-                        );
-                    }
-                break;
-                case "VIDEREG8_MOBILE": 
-                    if($arFilters["count_camera"]==8&&$arFilters["mobile_dev"]){
-                        $result[]=Array(
-                            "ID"=>$item,
-                            "COUNT"=>1
-                        );
-                    }
+                case "VIDEREG16": 
+                	if($arFilters["count_camera"]==16){
+                		$result[]=Array(
+                			"ID"=>$item,
+                			"COUNT"=>1
+                		);
+                	}
                 break;
                 case "CABEL": 
                 		$result[]=Array(
                 			"ID"=>$item,
                 			"COUNT"=>$arFilters['lenght_cabel']
+                		);
+                break;
+                case "CABELPOWER": 
+                		$result[]=Array(
+                			"ID"=>$item,
+                			"COUNT"=>$arFilters['lenght_pvs']
                 		);
                 break;
                 case "TOUBE": 
@@ -81,21 +79,21 @@ class solutionVideo extends solutionCalculate{
                 		);
                 	}
                 break;
-                case "REZERV": 
-                    if(isset($item)&&$item!=''&&$arFilters['uninterrupted']){
-                        $result[]=Array(
-                            "ID"=>$item,
-                            "COUNT"=>$arParams['COUNT_REZERV']
-                        );
-                    }
+                case "BOX": 
+                	if(isset($item)&&$item!=''){
+                		$result[]=Array(
+                			"ID"=>$item,
+                			"COUNT"=>$arFilters['count_camera']
+                		);
+                	}
                 break;
-                case "BP": 
-                    if(isset($item)&&$item!=''&&!$arFilters['uninterrupted']){
-                        $result[]=Array(
-                            "ID"=>$item,
-                            "COUNT"=>$arParams['COUNT_REZERV']
-                        );
-                    }
+                case "REZERV": 
+                	if(isset($item)&&$item!=''){
+                		$result[]=Array(
+                			"ID"=>$item,
+                			"COUNT"=>$arParams['COUNT_REZERV']
+                		);
+                	}
                 break;
                 case "BNC": 
                 	if(isset($item)&&$item!=''){
@@ -113,37 +111,37 @@ class solutionVideo extends solutionCalculate{
                 		);
                 	}
                 break;
+                case "DISPALY": 
+                	if(isset($item)&&$item!=''){
+                		$result[]=Array(
+                			"ID"=>$item,
+                			"COUNT"=>$arParams['COUNT_DISPALY']
+                		);
+                	}
+                break;
                 case "ALKALINE": 
-                	if(isset($item)&&$item!=''&&$arFilters['uninterrupted']){
+                	if(isset($item)&&$item!=''){
                 		$result[]=Array(
                 			"ID"=>$item,
                 			"COUNT"=>$arParams['COUNT_ALKALINE']
                 		);
                 	}
                 break;
-                case "HDD_500": 
-                    if(isset($item)&&$item!=''&&$arFilters['days_record']==7){
-                        $result[]=Array(
-                            "ID"=>$item,
-                            "COUNT"=>$arParams['COUNT_HDD']
-                        );
-                    }
+                case "HDD": 
+                	if(isset($item)&&$item!=''){
+                		$result[]=Array(
+                			"ID"=>$item,
+                			"COUNT"=>$arParams['COUNT_HDD']
+                		);
+                	}
                 break;
-                case "HDD_750": 
-                    if(isset($item)&&$item!=''&&$arFilters['days_record']==14){
-                        $result[]=Array(
-                            "ID"=>$item,
-                            "COUNT"=>$arParams['COUNT_HDD']
-                        );
-                    }
-                break;
-                case "HDD_1T": 
-                    if(isset($item)&&$item!=''&&$arFilters['days_record']==28){
-                        $result[]=Array(
-                            "ID"=>$item,
-                            "COUNT"=>$arParams['COUNT_HDD']
-                        );
-                    }
+                case "UPS": 
+                	if(isset($item)&&$item!=''){
+                		$result[]=Array(
+                			"ID"=>$item,
+                			"COUNT"=>$arParams['COUNT_UPS']
+                		);
+                	}
                 break;
             }
             //$result[]=$item;
@@ -156,18 +154,18 @@ class solutionVideo extends solutionCalculate{
 
 // Добавляем в корзину
 if($_POST['action']=='addbascet'){
-	echo "<div style='font-size: 14px; font-weight: bold;color: red;width: 100%;margin: 40px 0px 0px 0px;' align='center'>Товары добавлены в корзину</div>";
-	solutionVideo::addToBascket($_POST['items']);
+    echo "<div style='font-size: 14px; font-weight: bold;color: red;width: 100%;margin: 40px 0px 0px 0px;' align='center'>Товары добавлены в корзину</div>";
+    solutionVideo::addToBascket($_POST['items']);
 }
 
 //Вывод списка товаров
 if($_POST['action']=='getTable'){
-	$arItems=solutionVideo::getListItems($_POST['filters'],$_POST['items'],$_POST['count']);
-	solutionVideo::getTableItems($arItems);
-	foreach ($arItems as $key => $value) {
-		if($value['COUNT']>0)
-			$arResult['POST_DATE'].=$key.": {ID: '".$value['ID']."', COUNT: '".$value['COUNT']."'},";
-	}
+    $arItems=solutionVideo::getListItems($_POST['filters'],$_POST['items'],$_POST['count']);
+    solutionVideo::getTableItems($arItems);
+    foreach ($arItems as $key => $value) {
+        if($value['COUNT']>0)
+            $arResult['POST_DATE'].=$key.": {ID: '".$value['ID']."', COUNT: '".$value['COUNT']."'},";
+    }
 }
 ?>
 
