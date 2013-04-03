@@ -1,7 +1,8 @@
 <?
 //require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include.php");
-CModule::IncludeModule("sale");
-CModule::IncludeModule("catalog");
+if(!CModule::IncludeModule("sale")) return GetMessage("M_SALE_MISSING");
+if(!CModule::IncludeModule("catalog")) return GetMessage("M_CATALOG_MISSING");
+
 class solutionCalculate{
     function createForm($arFilters, $method="GET", $action=""){
         echo "<form action='".$action."' method='".$method."' name='fmcalc'>";
@@ -22,30 +23,30 @@ class solutionCalculate{
                 }
             echo "</td></tr>";
         }
-        echo "</table><input type='submit' name='calculate' value='Расчитать'> </form>";        
+        echo "</table><input type='submit' name='calculate' value='".GetMessage("TITLE_CALCULATE")."'> </form>";        
     }
     
     function getTableItems($arItems){
         $sum=0;
         $num=0;
         echo "<table class='solutionList' style='margin-top:10px'>";
-        echo "<tr><th class='listTitle'>Название</th><th>Цена</th><th>Количество</th><th>Сумма</th></tr>";
+        echo "<tr><th class='listTitle'>".GetMessage("TITLE_NAME")."</th><th>".GetMessage("TITLE_PRICE")."</th><th>".GetMessage("TITLE_COUNT")."</th><th>".GetMessage("TITLE_SUMM")."</th></tr>";
         foreach($arItems as $item){
           $tovar=CCatalogProduct::GetByIDEx($item["ID"]);
           if(intval($item["COUNT"])>0){
             if(intval($item["COUNT"])<=$tovar["PRODUCT"]["QUANTITY"]){
-                if($num%2==0) echo "<tr class='solutionDark'><td style='text-align:left;'>".$tovar["NAME"]."</td><td align='right' style='padding:3px'>".$tovar["PRICES"][2]["PRICE"]." руб. </td><td align='center' style='padding:3px'>".$item["COUNT"]."</td><td align='right' style='padding:3px'>".($tovar["PRICES"][2]["PRICE"]*$item["COUNT"])." руб.</td></tr>";
-                else echo "<tr class='solutionLight'><td style='text-align:left;'>".$tovar["NAME"]."</td><td align='right' style='padding:3px'>".$tovar["PRICES"][2]["PRICE"]." руб. </td><td align='center' style='padding:3px'>".$item["COUNT"]."</td><td align='right' style='padding:3px'>".($tovar["PRICES"][2]["PRICE"]*$item["COUNT"])." руб.</td></tr>";
+                if($num%2==0) echo "<tr class='solutionDark'><td style='text-align:left;'>".$tovar["NAME"]."</td><td align='right' style='padding:3px'>".$tovar["PRICES"][2]["PRICE"].GetMessage("CURRENCY")." </td><td align='center' style='padding:3px'>".$item["COUNT"]."</td><td align='right' style='padding:3px'>".($tovar["PRICES"][2]["PRICE"]*$item["COUNT"]).GetMessage("CURRENCY")."</td></tr>";
+                else echo "<tr class='solutionLight'><td style='text-align:left;'>".$tovar["NAME"]."</td><td align='right' style='padding:3px'>".$tovar["PRICES"][2]["PRICE"].GetMessage("CURRENCY")." </td><td align='center' style='padding:3px'>".$item["COUNT"]."</td><td align='right' style='padding:3px'>".($tovar["PRICES"][2]["PRICE"]*$item["COUNT"]).GetMessage("CURRENCY")."</td></tr>";
                 $sum+=($tovar["PRICES"][2]["PRICE"]*$item["COUNT"]);
             }else{
-                if($num%2==0) echo "<tr class='solutionDark'><td style='text-align:left;'>".$tovar["NAME"]."</td><td align='right' style='padding:3px'>".$tovar["PRICES"][2]["PRICE"]." руб. </td><td align='center' style='padding:3px'>нет в наличии</td><td align='right' style='padding:3px'> - </td></tr>";
-                else echo "<tr class='solutionLight'><td style='text-align:left;'>".$tovar["NAME"]."</td><td align='right' style='padding:3px'>".$tovar["PRICES"][2]["PRICE"]." руб. </td><td align='center' style='padding:3px'>нет в наличии</td><td align='right' style='padding:3px'>".($tovar["PRICES"][2]["PRICE"]*$item["COUNT"])." руб.</td></tr>";
+                if($num%2==0) echo "<tr class='solutionDark'><td style='text-align:left;'>".$tovar["NAME"]."</td><td align='right' style='padding:3px'>".$tovar["PRICES"][2]["PRICE"].GetMessage("CURRENCY")." </td><td align='center' style='padding:3px'>".GetMessage("NOT_AVAILABLE")."</td><td align='right' style='padding:3px'> - </td></tr>";
+                else echo "<tr class='solutionLight'><td style='text-align:left;'>".$tovar["NAME"]."</td><td align='right' style='padding:3px'>".$tovar["PRICES"][2]["PRICE"].GetMessage("CURRENCY")." </td><td align='center' style='padding:3px'>".GetMessage("NOT_AVAILABLE")."</td><td align='right' style='padding:3px'>".($tovar["PRICES"][2]["PRICE"]*$item["COUNT"]).GetMessage("CURRENCY")."</td></tr>";
                 
             }
             $num++;    
           }
         }
-        echo "<tr><td style='padding:5px;text-align:left;'><b>Сумма:</b></td><td align='center' style='padding:5px'>-</td><td align='center' style='padding:5px'>-</td><td align='right' style='padding:5px'><b>".$sum." руб.</b></td></tr>";
+        echo "<tr><td style='padding:5px;text-align:left;'><b>".GetMessage("TITLE_SUMM").":</b></td><td align='center' style='padding:5px'>-</td><td align='center' style='padding:5px'>-</td><td align='right' style='padding:5px'><b>".$sum.GetMessage("CURRENCY")."</b></td></tr>";
         echo "</table><div class='solutionbuy' id='buy'></div>";  
         //<input type='button' id='buy' value='Добавить в корзину'>      
     }

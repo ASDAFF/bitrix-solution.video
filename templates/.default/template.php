@@ -38,7 +38,7 @@ createForm($arResult['FILTERS']);
         });
 
         $('#buy').click(function (){
-            alert('Добавить в корзину');
+            //alert('Добавить в корзину');
             var request={
                 count_camera: $('#count_camera').val(),
                 lenght_cabel: $('#lenght_cabel').val(),

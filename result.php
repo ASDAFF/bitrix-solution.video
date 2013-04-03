@@ -82,12 +82,20 @@ class solutionVideo extends solutionCalculate{
                 	}
                 break;
                 case "REZERV": 
-                	if(isset($item)&&$item!=''&&$arFilters['uninterrupted']){
-                		$result[]=Array(
-                			"ID"=>$item,
-                			"COUNT"=>$arParams['COUNT_REZERV']
-                		);
-                	}
+                    if(isset($item)&&$item!=''&&$arFilters['uninterrupted']){
+                        $result[]=Array(
+                            "ID"=>$item,
+                            "COUNT"=>$arParams['COUNT_REZERV']
+                        );
+                    }
+                break;
+                case "BP": 
+                    if(isset($item)&&$item!=''&&!$arFilters['uninterrupted']){
+                        $result[]=Array(
+                            "ID"=>$item,
+                            "COUNT"=>$arParams['COUNT_REZERV']
+                        );
+                    }
                 break;
                 case "BNC": 
                 	if(isset($item)&&$item!=''){
@@ -105,37 +113,37 @@ class solutionVideo extends solutionCalculate{
                 		);
                 	}
                 break;
-                case "DISPALY": 
-                	if(isset($item)&&$item!=''){
-                		$result[]=Array(
-                			"ID"=>$item,
-                			"COUNT"=>$arParams['COUNT_DISPALY']
-                		);
-                	}
-                break;
                 case "ALKALINE": 
-                	if(isset($item)&&$item!=''){
+                	if(isset($item)&&$item!=''&&$arFilters['uninterrupted']){
                 		$result[]=Array(
                 			"ID"=>$item,
                 			"COUNT"=>$arParams['COUNT_ALKALINE']
                 		);
                 	}
                 break;
-                case "HDD": 
-                	if(isset($item)&&$item!=''){
-                		$result[]=Array(
-                			"ID"=>$item,
-                			"COUNT"=>$arParams['COUNT_HDD']
-                		);
-                	}
+                case "HDD_500": 
+                    if(isset($item)&&$item!=''&&$arFilters['days_record']==7){
+                        $result[]=Array(
+                            "ID"=>$item,
+                            "COUNT"=>$arParams['COUNT_HDD']
+                        );
+                    }
                 break;
-                case "UPS": 
-                	if(isset($item)&&$item!=''){
-                		$result[]=Array(
-                			"ID"=>$item,
-                			"COUNT"=>$arParams['COUNT_UPS']
-                		);
-                	}
+                case "HDD_750": 
+                    if(isset($item)&&$item!=''&&$arFilters['days_record']==14){
+                        $result[]=Array(
+                            "ID"=>$item,
+                            "COUNT"=>$arParams['COUNT_HDD']
+                        );
+                    }
+                break;
+                case "HDD_1T": 
+                    if(isset($item)&&$item!=''&&$arFilters['days_record']==28){
+                        $result[]=Array(
+                            "ID"=>$item,
+                            "COUNT"=>$arParams['COUNT_HDD']
+                        );
+                    }
                 break;
             }
             //$result[]=$item;
@@ -148,7 +156,7 @@ class solutionVideo extends solutionCalculate{
 
 // Добавляем в корзину
 if($_POST['action']=='addbascet'){
-    echo "<div style='font-size: 14px; font-weight: bold;color: red;width: 100%;margin: 40px 0px 0px 0px;' align='center'>Товары добавлены в корзину</div>";
+    echo "<div style='font-size: 14px; font-weight: bold;color: red;width: 100%;margin: 40px 0px 0px 0px;' align='center'>".GetMessage("NOT_ADD_CART")."</div>";
     solutionVideo::addToBascket($_POST['items']);
 }
 
