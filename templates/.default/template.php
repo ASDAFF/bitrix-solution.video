@@ -16,12 +16,12 @@ createForm($arResult['FILTERS']);
         $('#resbutt').click(function (){
             // Поддержка передачи изображения на мобильные устройства
           	if($('#mobile_dev').val()=="<?=GetMessage("LIST_YES")?>"){
-            	  var mobile = true;
-          	}else var mobile = false;
+            	  var mobile = 1;
+          	}else var mobile = 0;
           	// Поддержка бесперебойного питания
           	if($('#uninterrupted').val()=="<?=GetMessage("LIST_YES")?>"){
-                  var uninterrupted = true;
-          	}else var uninterrupted = false;
+                  var uninterrupted = 1;
+          	}else var uninterrupted = 0;
             var request={
             	filters: {
                 	count_camera: $('#count_camera').val(),
